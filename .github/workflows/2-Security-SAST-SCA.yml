@@ -70,10 +70,4 @@ jobs:
         uses: veracode/veracode-flaws-to-issues@v1
         with:
           scan-results-json: '/tmp/policy_flaws.json'
-          github-token: ${{ secrets.GH_TOKEN }}     
-
-      - name: Synch SCA Security Issues to GitHub Issues
-        uses: veracode/veracode-flaws-to-issues@v1
-        with:
-          scan-results-json: '/tmp/sca_flaws.json'
-          github-token: ${{ secrets.GH_TOKEN }}    
+          github-token: ${{ secrets.GH_TOKEN }}  
