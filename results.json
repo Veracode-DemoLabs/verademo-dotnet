@@ -1,0 +1,364 @@
+{
+  "_links": {
+    "root": {
+      "href": "/"
+    },
+    "self": {
+      "href": "/scans/314dd811-f666-4b09-9852-db6105964fb4/findings"
+    },
+    "help": {
+      "href": "https://help.veracode.com/reader/tS9CaFwL4_lbIEWWomsJoA/ovfZGgu96UINQxIuTqRDwg"
+    }
+  },
+  "scan_id": "314dd811-f666-4b09-9852-db6105964fb4",
+  "scan_status": "SUCCESS",
+  "message": "Scan successful. Results size: 20082 bytes",
+  "modules": [
+    "Content/D_C/a/verademo-dotnet/verademo-dotnet/Verademo-dotnet/obj/Debug/Package/PackageTmp/bin/Verademo-dotnet.dll",
+    "JS files within Verademo-dotnet.zip"
+  ],
+  "modules_count": 2,
+  "findings": [
+    {
+      "title": "system_data_dll.System.Data.IDbCommand.ExecuteReader",
+      "issue_id": 1006,
+      "gob": "B",
+      "severity": 4,
+      "issue_type_id": "taint",
+      "issue_type": "Improper Neutralization of Special Elements used in an SQL Command (\u0027SQL Injection\u0027)",
+      "cwe_id": "89",
+      "display_text": "\u003cspan\u003eThis database query contains a SQL injection flaw.  The call to system_data_dll.System.Data.IDbCommand.ExecuteReader() constructs a dynamic SQL query using a variable derived from untrusted input.  An attacker could exploit this flaw to execute arbitrary SQL queries against the database. ExecuteReader() was called on the command object, which contains tainted data. The tainted data originated from earlier calls to verademo_2Ddotnet_dll.VirtualController.vc_mvcentry, and verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.HomeController.Index.\u003c/span\u003e \u003cspan\u003eAvoid dynamically constructing SQL queries.  Instead, use parameterized prepared statements to prevent the database from interpreting the contents of bind variables as part of the query.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/89.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://owasp.org/www-community/attacks/SQL_Injection\"\u003eOWASP\u003c/a\u003e\u003c/span\u003e",
+      "files": {
+        "source_file": {
+          "file": "a/verademo-dotnet/verademo-dotnet/verademo-dotnet/controllers/homecontroller.cs",
+          "line": 39,
+          "function_name": "Index",
+          "qualified_function_name": "verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.HomeController.Index",
+          "function_prototype": "System.Web.Mvc.ActionResult Index(int, string, string)",
+          "scope": "verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.HomeController"
+        }
+      },
+      "flaw_match": {
+        "procedure_hash": "4153129984",
+        "prototype_hash": "1954623451",
+        "flaw_hash": "1728330308",
+        "flaw_hash_count": 2,
+        "flaw_hash_ordinal": 1,
+        "cause_hash": "2866949028",
+        "cause_hash_count": 1,
+        "cause_hash_ordinal": 1,
+        "cause_hash2": "1522093433",
+        "cause_hash2_ordinal": "2"
+      },
+      "stack_dumps": {
+        "stack_dump": [
+          {}
+        ]
+      },
+      "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v5/net/89.html"
+    },
+    {
+      "title": "system_web_dll.System.Web.HttpResponse.Write",
+      "issue_id": 1000,
+      "gob": "B",
+      "severity": 3,
+      "issue_type_id": "taint",
+      "issue_type": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)",
+      "cwe_id": "80",
+      "display_text": "\u003cspan\u003eThis call to system_web_dll.System.Web.HttpResponse.Write() contains a cross-site scripting (XSS) flaw.  The application populates the HTTP response with untrusted input, allowing an attacker to embed malicious content, such as Javascript code, which will be executed in the context of the victim\u0027s browser.  XSS vulnerabilities are commonly exploited to steal or manipulate cookies, modify presentation of content, and compromise confidential information, with new attack vectors being discovered on a regular basis. The first argument to Write() contains tainted data from the variable this.get_Request().get_QueryString().get_Item(). The tainted data originated from an earlier call to system_web_dll.System.Web.HttpRequest.get_QueryString.\u003c/span\u003e \u003cspan\u003eUse contextual escaping on all untrusted data before using it to construct any portion of an HTTP response.  The escaping method should be chosen based on the specific use case of the untrusted data, otherwise it may not protect fully against the attack. For example, if the data is being written to the body of an HTML page, use HTML entity escaping; if the data is being written to an attribute, use attribute escaping; etc.  Both the OWASP Java Encoder library and the Microsoft AntiXSS library provide contextual escaping methods. For more details on contextual escaping, see https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md. In addition, as a best practice, always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/79.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://owasp.org/www-community/attacks/xss/\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://docs.veracode.com/r/review_cleansers\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+      "files": {
+        "source_file": {
+          "file": "a/verademo-dotnet/verademo-dotnet/verademo-dotnet/xssinjection.aspx.cs",
+          "line": 16,
+          "function_name": "Page_Load",
+          "qualified_function_name": "verademo_2Ddotnet_dll.Verademo_dotnet.XssInjection.Page_Load",
+          "function_prototype": "void Page_Load(object, System.EventArgs)",
+          "scope": "verademo_2Ddotnet_dll.Verademo_dotnet.XssInjection"
+        }
+      },
+      "flaw_match": {
+        "procedure_hash": "4135735017",
+        "prototype_hash": "3962385792",
+        "flaw_hash": "623757560",
+        "flaw_hash_count": 1,
+        "flaw_hash_ordinal": 1,
+        "cause_hash": "3111729227",
+        "cause_hash_count": 1,
+        "cause_hash_ordinal": 1,
+        "cause_hash2": "3248169095",
+        "cause_hash2_ordinal": "1"
+      },
+      "stack_dumps": {
+        "stack_dump": [
+          {}
+        ]
+      },
+      "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v5/net/80.html"
+    },
+    {
+      "title": "system_web_dll.System.Web.HttpResponse.Redirect",
+      "issue_id": 1004,
+      "gob": "B",
+      "severity": 3,
+      "issue_type_id": "taint",
+      "issue_type": "URL Redirection to Untrusted Site (\u0027Open Redirect\u0027)",
+      "cwe_id": "601",
+      "display_text": "\u003cspan\u003eThis call to system_web_dll.System.Web.HttpResponse.Redirect() contains a URL redirection to untrusted site flaw.  Writing untrusted input into a URL value could cause the web application to redirect the request to the specified URL, leading to phishing attempts to steal user credentials.\u003c/span\u003e \u003cspan\u003eAlways validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible. The first argument to Redirect() contains tainted data from the variable this.get_Request().get_QueryString().get_Item(). The tainted data originated from an earlier call to system_web_dll.System.Web.HttpRequest.get_QueryString.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/601.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html\"\u003eOWASP\u003c/a\u003e\u003c/span\u003e",
+      "files": {
+        "source_file": {
+          "file": "a/verademo-dotnet/verademo-dotnet/verademo-dotnet/openredirect.aspx.cs",
+          "line": 20,
+          "function_name": "Page_Load",
+          "qualified_function_name": "verademo_2Ddotnet_dll.Verademo_dotnet.FormOpenRedirect.Page_Load",
+          "function_prototype": "void Page_Load(object, System.EventArgs)",
+          "scope": "verademo_2Ddotnet_dll.Verademo_dotnet.FormOpenRedirect"
+        }
+      },
+      "flaw_match": {
+        "procedure_hash": "613618817",
+        "prototype_hash": "125237385",
+        "flaw_hash": "211067826",
+        "flaw_hash_count": 1,
+        "flaw_hash_ordinal": 1,
+        "cause_hash": "1146357568",
+        "cause_hash_count": 1,
+        "cause_hash_ordinal": 1,
+        "cause_hash2": "3716048357",
+        "cause_hash2_ordinal": "1"
+      },
+      "stack_dumps": {
+        "stack_dump": [
+          {}
+        ]
+      },
+      "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v5/net/601.html"
+    },
+    {
+      "title": "system_web_dll.System.Web.HttpResponse.Redirect",
+      "issue_id": 1003,
+      "gob": "B",
+      "severity": 3,
+      "issue_type_id": "taint",
+      "issue_type": "URL Redirection to Untrusted Site (\u0027Open Redirect\u0027)",
+      "cwe_id": "601",
+      "display_text": "\u003cspan\u003eThis call to system_web_dll.System.Web.HttpResponse.Redirect() contains a URL redirection to untrusted site flaw.  Writing untrusted input into a URL value could cause the web application to redirect the request to the specified URL, leading to phishing attempts to steal user credentials.\u003c/span\u003e \u003cspan\u003eAlways validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible. The first argument to Redirect() contains tainted data from the variable UrlEncode(). The tainted data originated from an earlier call to system_web_dll.System.Web.HttpRequest.get_QueryString.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/601.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html\"\u003eOWASP\u003c/a\u003e\u003c/span\u003e",
+      "files": {
+        "source_file": {
+          "file": "a/verademo-dotnet/verademo-dotnet/verademo-dotnet/openredirect.aspx.cs",
+          "line": 23,
+          "function_name": "Page_Load",
+          "qualified_function_name": "verademo_2Ddotnet_dll.Verademo_dotnet.FormOpenRedirect.Page_Load",
+          "function_prototype": "void Page_Load(object, System.EventArgs)",
+          "scope": "verademo_2Ddotnet_dll.Verademo_dotnet.FormOpenRedirect"
+        }
+      },
+      "flaw_match": {
+        "procedure_hash": "613618817",
+        "prototype_hash": "125237385",
+        "flaw_hash": "2064082956",
+        "flaw_hash_count": 1,
+        "flaw_hash_ordinal": 1,
+        "cause_hash": "1067074542",
+        "cause_hash_count": 1,
+        "cause_hash_ordinal": 1,
+        "cause_hash2": "190667863",
+        "cause_hash2_ordinal": "1"
+      },
+      "stack_dumps": {
+        "stack_dump": [
+          {}
+        ]
+      },
+      "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v5/net/601.html"
+    },
+    {
+      "title": "system_web_dll.System.Web.HttpResponse.Redirect",
+      "issue_id": 1002,
+      "gob": "B",
+      "severity": 3,
+      "issue_type_id": "taint",
+      "issue_type": "URL Redirection to Untrusted Site (\u0027Open Redirect\u0027)",
+      "cwe_id": "601",
+      "display_text": "\u003cspan\u003eThis call to system_web_dll.System.Web.HttpResponse.Redirect() contains a URL redirection to untrusted site flaw.  Writing untrusted input into a URL value could cause the web application to redirect the request to the specified URL, leading to phishing attempts to steal user credentials.\u003c/span\u003e \u003cspan\u003eAlways validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible. The first argument to Redirect() contains tainted data from the variable this.MyCustomCleanser(). The tainted data originated from an earlier call to system_web_dll.System.Web.HttpRequest.get_QueryString.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/601.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html\"\u003eOWASP\u003c/a\u003e\u003c/span\u003e",
+      "files": {
+        "source_file": {
+          "file": "a/verademo-dotnet/verademo-dotnet/verademo-dotnet/openredirect.aspx.cs",
+          "line": 26,
+          "function_name": "Page_Load",
+          "qualified_function_name": "verademo_2Ddotnet_dll.Verademo_dotnet.FormOpenRedirect.Page_Load",
+          "function_prototype": "void Page_Load(object, System.EventArgs)",
+          "scope": "verademo_2Ddotnet_dll.Verademo_dotnet.FormOpenRedirect"
+        }
+      },
+      "flaw_match": {
+        "procedure_hash": "613618817",
+        "prototype_hash": "125237385",
+        "flaw_hash": "3085742426",
+        "flaw_hash_count": 1,
+        "flaw_hash_ordinal": 1,
+        "cause_hash": "3623999917",
+        "cause_hash_count": 1,
+        "cause_hash_ordinal": 1,
+        "cause_hash2": "1159570456",
+        "cause_hash2_ordinal": "1"
+      },
+      "stack_dumps": {
+        "stack_dump": [
+          {}
+        ]
+      },
+      "mitigation": {
+        "custom_cleanser": {
+          "name": "Redirect URL Cleanser",
+          "annotation": "veracodeattributes_dll/Veracode/Attributes/RedirectUrlCleanserAttribute",
+          "frame_id": "1",
+          "cleanser_prototype": "string MyCustomCleanser(string)"
+        }
+      },
+      "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v5/net/601.html"
+    },
+    {
+      "title": "hardcodedpasswdset",
+      "issue_id": 1009,
+      "gob": "B",
+      "severity": 3,
+      "issue_type_id": "crypto",
+      "issue_type": "Use of Hard-coded Password",
+      "cwe_id": "259",
+      "display_text": "\u003cspan\u003eThis variable assignment uses a hard-coded password that may compromise system security in a way that cannot be easily remedied.  The use of a hard-coded password significantly increases the possibility that the account being protected will be compromised.  Moreover, the password cannot be changed without patching the software.  If a hard-coded password is compromised in a commercial product, all deployed instances may be vulnerable to attack.  In some cases, this finding may indicate a reference to a password (e.g. the name of a key in a properties file) rather than an actual password. hardcodedpasswdset\u003c/span\u003e \u003cspan\u003eStore passwords out-of-band from the application code.  Follow best practices for protecting credentials stored in locations such as configuration or properties files. An HSM may be appropriate for particularly sensitive credentials.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/259.html\"\u003eCWE\u003c/a\u003e\u003c/span\u003e",
+      "files": {
+        "source_file": {
+          "file": "a/verademo-dotnet/verademo-dotnet/verademo-dotnet/controllers/homecontroller.cs",
+          "line": 17,
+          "function_name": "Index",
+          "qualified_function_name": "verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.HomeController.Index",
+          "function_prototype": "System.Web.Mvc.ActionResult Index(int, string, string)",
+          "scope": "verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.HomeController"
+        }
+      },
+      "flaw_match": {
+        "procedure_hash": "4153129984",
+        "prototype_hash": "1954623451",
+        "flaw_hash": "4229634050",
+        "flaw_hash_count": 1,
+        "flaw_hash_ordinal": 1,
+        "cause_hash": "2181403914",
+        "cause_hash_count": 1,
+        "cause_hash_ordinal": 1,
+        "cause_hash2": "0",
+        "cause_hash2_ordinal": "0"
+      },
+      "stack_dumps": {},
+      "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v5/net/259.html"
+    },
+    {
+      "title": "mscorlib_dll.System.IO.File.Delete",
+      "issue_id": 1007,
+      "gob": "B",
+      "severity": 3,
+      "issue_type_id": "taint",
+      "issue_type": "External Control of File Name or Path",
+      "cwe_id": "73",
+      "display_text": "\u003cspan\u003eThis call to mscorlib_dll.System.IO.File.Delete() contains a path manipulation flaw.  The argument to the function is a filename constructed using untrusted input.  If an attacker is allowed to specify all or part of the filename, it may be possible to gain unauthorized access to files on the server, including those outside the webroot, that would be normally be inaccessible to end users.  The level of exposure depends on the effectiveness of input validation routines, if any. The first argument to Delete() contains tainted data from the variable filePath. The tainted data originated from earlier calls to verademo_2Ddotnet_dll.VirtualController.vc_mvcentry, and verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.HomeController.Index.\u003c/span\u003e \u003cspan\u003eValidate all untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.  When using blocklists, be sure that the sanitizing routine performs a sufficient number of iterations to remove all instances of disallowed characters.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/73.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://owasp.org/www-community/attacks/Path_Traversal\"\u003eOWASP\u003c/a\u003e\u003c/span\u003e",
+      "files": {
+        "source_file": {
+          "file": "a/verademo-dotnet/verademo-dotnet/verademo-dotnet/controllers/homecontroller.cs",
+          "line": 50,
+          "function_name": "Index",
+          "qualified_function_name": "verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.HomeController.Index",
+          "function_prototype": "System.Web.Mvc.ActionResult Index(int, string, string)",
+          "scope": "verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.HomeController"
+        }
+      },
+      "flaw_match": {
+        "procedure_hash": "4153129984",
+        "prototype_hash": "1954623451",
+        "flaw_hash": "1728330308",
+        "flaw_hash_count": 2,
+        "flaw_hash_ordinal": 2,
+        "cause_hash": "2866949028",
+        "cause_hash_count": 1,
+        "cause_hash_ordinal": 1,
+        "cause_hash2": "1522093433",
+        "cause_hash2_ordinal": "2"
+      },
+      "stack_dumps": {},
+      "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v5/net/73.html"
+    },
+    {
+      "title": "mscorlib_dll.System.IO.File.OpenText",
+      "issue_id": 1008,
+      "gob": "B",
+      "severity": 3,
+      "issue_type_id": "taint",
+      "issue_type": "External Control of File Name or Path",
+      "cwe_id": "73",
+      "display_text": "\u003cspan\u003eThis call to mscorlib_dll.System.IO.File.OpenText() contains a path manipulation flaw.  The argument to the function is a filename constructed using untrusted input.  If an attacker is allowed to specify all or part of the filename, it may be possible to gain unauthorized access to files on the server, including those outside the webroot, that would be normally be inaccessible to end users.  The level of exposure depends on the effectiveness of input validation routines, if any. The first argument to OpenText() contains tainted data from the variable filePath. The tainted data originated from earlier calls to verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.DefaultController.Index, and verademo_2Ddotnet_dll.VirtualController.vc_mvcentry.\u003c/span\u003e \u003cspan\u003eValidate all untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.  When using blocklists, be sure that the sanitizing routine performs a sufficient number of iterations to remove all instances of disallowed characters.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/73.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://owasp.org/www-community/attacks/Path_Traversal\"\u003eOWASP\u003c/a\u003e\u003c/span\u003e",
+      "files": {
+        "source_file": {
+          "file": "a/verademo-dotnet/verademo-dotnet/verademo-dotnet/controllers/defaultcontroller.cs",
+          "line": 23,
+          "function_name": "Index",
+          "qualified_function_name": "verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.DefaultController.Index",
+          "function_prototype": "System.Web.Mvc.ActionResult Index(string)",
+          "scope": "verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.DefaultController"
+        }
+      },
+      "flaw_match": {
+        "procedure_hash": "2194255256",
+        "prototype_hash": "461691498",
+        "flaw_hash": "1480817290",
+        "flaw_hash_count": 2,
+        "flaw_hash_ordinal": 1,
+        "cause_hash": "2866949028",
+        "cause_hash_count": 1,
+        "cause_hash_ordinal": 1,
+        "cause_hash2": "1522093433",
+        "cause_hash2_ordinal": "4"
+      },
+      "stack_dumps": {},
+      "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v5/net/73.html"
+    },
+    {
+      "title": "log4net_dll.log4net.ILog.Info",
+      "issue_id": 1005,
+      "gob": "B",
+      "severity": 3,
+      "issue_type_id": "taint",
+      "issue_type": "Improper Output Neutralization for Logs",
+      "cwe_id": "117",
+      "display_text": "\u003cspan\u003eThis call to log4net_dll.log4net.ILog.Info() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker\u0027s tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to Info() contains tainted data. The tainted data originated from earlier calls to verademo_2Ddotnet_dll.VirtualController.vc_mvcentry, and verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.DefaultController.Index.\u003c/span\u003e \u003cspan\u003eAvoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.\u003c/span\u003e \u003cspan\u003eReferences: \u003ca href\u003d\"https://cwe.mitre.org/data/definitions/117.html\"\u003eCWE\u003c/a\u003e \u003ca href\u003d\"https://owasp.org/www-community/attacks/Log_Injection\"\u003eOWASP\u003c/a\u003e \u003ca href\u003d\"https://docs.veracode.com/r/review_cleansers?tocId\u003dnYnZqAenFFZmB75MQrZwuA\"\u003eSupported Cleansers\u003c/a\u003e\u003c/span\u003e",
+      "files": {
+        "source_file": {
+          "file": "a/verademo-dotnet/verademo-dotnet/verademo-dotnet/controllers/defaultcontroller.cs",
+          "line": 28,
+          "function_name": "Index",
+          "qualified_function_name": "verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.DefaultController.Index",
+          "function_prototype": "System.Web.Mvc.ActionResult Index(string)",
+          "scope": "verademo_2Ddotnet_dll.Verademo_dotnet.Controllers.DefaultController"
+        }
+      },
+      "flaw_match": {
+        "procedure_hash": "2194255256",
+        "prototype_hash": "461691498",
+        "flaw_hash": "2786137861",
+        "flaw_hash_count": 1,
+        "flaw_hash_ordinal": 1,
+        "cause_hash": "3076270232",
+        "cause_hash_count": 1,
+        "cause_hash_ordinal": 1,
+        "cause_hash2": "1711213109",
+        "cause_hash2_ordinal": "1"
+      },
+      "stack_dumps": {
+        "stack_dump": [
+          {}
+        ]
+      },
+      "flaw_details_link": "https://downloads.veracode.com/securityscan/cwe/v5/net/117.html"
+    }
+  ],
+  "selected_modules": [],
+  "pipeline_scan": "23.6.0-0",
+  "dev_stage": "DEVELOPMENT"
+}

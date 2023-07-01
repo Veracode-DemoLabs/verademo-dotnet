@@ -1,0 +1,45 @@
+
+Scan Summary:
+PIPELINE_SCAN_VERSION: 23.6.0-0
+DEV-STAGE: DEVELOPMENT
+SCAN_ID: 314dd811-f666-4b09-9852-db6105964fb4
+SCAN_STATUS: SUCCESS
+SCAN_MESSAGE: Scan successful. Results size: 20082 bytes
+====================
+Analysis Successful.
+====================
+
+==========================
+Found 2 Scannable modules.
+==========================
+Content/D_C/a/verademo-dotnet/verademo-dotnet/Verademo-dotnet/obj/Debug/Package/PackageTmp/bin/Verademo-dotnet.dll
+JS files within Verademo-dotnet.zip
+
+===================
+Analyzed 2 modules.
+===================
+Content/D_C/a/verademo-dotnet/verademo-dotnet/Verademo-dotnet/obj/Debug/Package/PackageTmp/bin/Verademo-dotnet.dll
+JS files within Verademo-dotnet.zip
+
+==================
+Analyzed 9 issues.
+==================
+--------------------------------
+Found 1 issues of High severity.
+--------------------------------
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): a/verademo-dotnet/verademo-dotnet/verademo-dotnet/controllers/homecontroller.cs:39
+----------------------------------
+Found 8 issues of Medium severity.
+----------------------------------
+CWE-80: Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS): a/verademo-dotnet/verademo-dotnet/verademo-dotnet/xssinjection.aspx.cs:16
+CWE-601: URL Redirection to Untrusted Site ('Open Redirect'): a/verademo-dotnet/verademo-dotnet/verademo-dotnet/openredirect.aspx.cs:20
+CWE-601: URL Redirection to Untrusted Site ('Open Redirect'): a/verademo-dotnet/verademo-dotnet/verademo-dotnet/openredirect.aspx.cs:23
+CWE-601: URL Redirection to Untrusted Site ('Open Redirect'): a/verademo-dotnet/verademo-dotnet/verademo-dotnet/openredirect.aspx.cs:26
+CWE-259: Use of Hard-coded Password: a/verademo-dotnet/verademo-dotnet/verademo-dotnet/controllers/homecontroller.cs:17
+CWE-73: External Control of File Name or Path: a/verademo-dotnet/verademo-dotnet/verademo-dotnet/controllers/homecontroller.cs:50
+CWE-73: External Control of File Name or Path: a/verademo-dotnet/verademo-dotnet/verademo-dotnet/controllers/defaultcontroller.cs:23
+CWE-117: Improper Output Neutralization for Logs: a/verademo-dotnet/verademo-dotnet/verademo-dotnet/controllers/defaultcontroller.cs:28
+
+========================
+FAILURE: Found 9 issues!
+========================
