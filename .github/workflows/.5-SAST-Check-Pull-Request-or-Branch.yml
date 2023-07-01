@@ -20,7 +20,7 @@ jobs:
     
     - name: Run msbuild
       run: |
-          msbuild Verademo-dotnet.sln  
+          msbuild Verademo-dotnet.sln /p:DeployOnBuild=true
       
     - name: List folder contents for visual of folder contents
       run: |
@@ -30,7 +30,7 @@ jobs:
     - name: Zip Application Files 
       uses: vimtor/action-zip@v1
       with:
-        files: verademo-dotnet\Verademo-dotnet\bin*
+        files: .\verademo-dotnet\Verademo-dotnet\bin*
         dest: verademodotnetcore.zip
         
 # Download Veracode Static Pipeline Scanner     
