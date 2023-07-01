@@ -30,7 +30,7 @@ jobs:
     - name: Zip Application Files 
       uses: vimtor/action-zip@v1
       with:
-        files: app/bin/Debug/netcoreapp3.1/
+        files: verademo-dotnet\Verademo-dotnet\bin\
         dest: verademodotnetcore.zip
         
 # Download Veracode Static Pipeline Scanner     
