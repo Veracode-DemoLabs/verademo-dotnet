@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.veracode/veracode-tmp
+/.veracode/build
+/Verademo-Dotnet/Properties/PublishProfiles/VeracodePublishProfile.pubxml
+/Verademo-Dotnet/obj/Debug/AspnetCompileMerge
+/Verademo-Dotnet/obj/Debug/CSAutoParameterize/transformed/Web.config
