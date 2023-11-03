@@ -5,7 +5,8 @@
 /.veracode/veracode-tmp
 /.veracode/build
 /Verademo-Dotnet/Properties/PublishProfiles/VeracodePublishProfile.pubxml
-/Verademo-Dotnet/obj/Debug/AspnetCompileMerge
-/Verademo-Dotnet/obj/Debug/CSAutoParameterize/transformed/Web.config
+/Verademo-Dotnet/obj/
+/Verademo-Dotnet/bin/
 .vs/
 obj/
+packages/
