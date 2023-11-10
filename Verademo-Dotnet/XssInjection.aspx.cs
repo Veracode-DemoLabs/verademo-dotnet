@@ -8,15 +8,11 @@ namespace Verademo_dotnet
         {
             if (Request.QueryString["text"] != null)
             {
-                // to quickly comment out code control-k, control-c
-                // to quickly comment in code control-k, control-u
 
-                // bad code.  When ran, the following parameter added to the querystring results in XSS.  
+                //  When ran, the following parameter added to the querystring results in XSS.  
                 // text=<script>alert(1);</script>
                 Response.Write(Request.QueryString["text"]);
 
-                // good code
-                Response.Write(System.Net.WebUtility.HtmlEncode(Request.QueryString["text"]));
             }
         }
     }
