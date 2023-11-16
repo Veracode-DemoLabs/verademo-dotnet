@@ -30,7 +30,7 @@ jobs:
       uses: actions/upload-artifact@v3.1.0
       with:
         name: VeraDemo-DotNet-App-Artifact
-        path: ./veracode-
+        path: ./Verademo-dotnet.zip
 
 # Running Software Composition Analysis Agent against the local repo while on a Windows machine since this is ASPDotNet
 
