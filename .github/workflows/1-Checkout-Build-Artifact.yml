@@ -20,7 +20,7 @@ jobs:
     
     - name: Run msbuild
       run: |
-          msbuild Verademo-dotnet.sln  
+          msbuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="../"
       
     - name: List folder contents for visual of folder contents
       run: |
@@ -30,7 +30,7 @@ jobs:
       uses: actions/upload-artifact@v3.1.0
       with:
         name: VeraDemo-DotNet-App-Artifact
-        path: Verademo-Dotnet/bin/
+        path: ./veracode-
 
 # Running Software Composition Analysis Agent against the local repo while on a Windows machine since this is ASPDotNet
 
