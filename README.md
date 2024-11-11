@@ -5,7 +5,7 @@ This example uses Azure Dev Ops to build and test VeraDemoDotNet with the Veraco
 
 Clone or connect this repo to Azure Dev Ops. Create a Pipeline using included example azure-pipelines.yml.
 
-Setup API ID and Key in Pipeline Variables –
+Setup API ID and Key in Pipeline Variables – 
 - VERACODE_API_ID
 - VERACODE_API_KEY
 
